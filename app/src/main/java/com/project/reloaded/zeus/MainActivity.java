@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "User not Verified", Toast.LENGTH_SHORT).show();
-            //firebaseAuth.signOut();
+            firebaseAuth.signOut();
         }
 
     }
