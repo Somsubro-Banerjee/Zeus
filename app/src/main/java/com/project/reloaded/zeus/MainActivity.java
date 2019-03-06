@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
         openMainPage();
 
         if (true){
-            Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "registration successful", Toast.LENGTH_SHORT).show();
             openMainPage();
 
         }
         else{
             Toast.makeText(this, "User not Verified", Toast.LENGTH_SHORT).show();
-            firebaseAuth.signOut();
+            //firebaseAuth.signOut();
         }
 
     }
