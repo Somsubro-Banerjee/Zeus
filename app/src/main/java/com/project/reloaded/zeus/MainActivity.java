@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!emailflagger) {
             Toast.makeText(this, "User not Verified", Toast.LENGTH_SHORT).show();
-            //firebaseAuth.signOut();
+            firebaseAuth.signOut();
 
         } else {
             Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
