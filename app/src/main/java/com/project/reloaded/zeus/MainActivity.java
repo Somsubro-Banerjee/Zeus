@@ -1,8 +1,6 @@
 package com.project.reloaded.zeus;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         button = findViewById(R.id.btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Boolean emailflagger = user.isEmailVerified();
         openMainPage();
 
-        if (emailflagger){
+        if (true){
             Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
             openMainPage();
 
