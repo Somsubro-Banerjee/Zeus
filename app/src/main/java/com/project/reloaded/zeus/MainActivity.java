@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Boolean emailflagger = user.isEmailVerified();
         openMainPage();
 
-        if (true){
+        if (emailflagger){
             Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
             openMainPage();
 
