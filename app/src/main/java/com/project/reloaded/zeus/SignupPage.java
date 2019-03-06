@@ -69,7 +69,7 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
                     sendEmailVerification();
                 }
                 else{
-                    Toast.makeText(SignupPage.this, "Please type a valid email ID Nigga",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupPage.this, "Please type a valid email ID",Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -87,11 +87,11 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
                     if(task.isSuccessful()){
                         Toast.makeText(SignupPage.this,"Check Email",Toast.LENGTH_SHORT).show();
                         finish();
-                        startActivity(new Intent(SignupPage.this, LoginActivity.class));
+                        startActivity(new Intent(SignupPage.this, MainActivity.class));
 
                     }
                     else{
-                        Toast.makeText(SignupPage.this, "UNKNoWN ErRoR Occured Nigga",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupPage.this, "UNKNoWN ErRoR Occured",Toast.LENGTH_SHORT).show();
 
                     }
                 }
