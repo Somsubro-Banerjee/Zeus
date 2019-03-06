@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="24dp"
+    android:paddingLeft="24dp"
+    android:background="#fd4e5e">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="64dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/ic_directions_bike_black_24dp"
+                android:padding="4dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bike App"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="16dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="16dp"
+                android:drawablePadding="16dp"
+                android:hint="Email Address"
+                android:textColorHint="#fe97a0"
+                android:maxLines="1"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:id="@+id/editText_emailAddress"
+                android:layout_marginTop="32dp"
+                android:drawableRight="@drawable/ic_person_outline_red_400_24dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="16dp"
+                android:hint="password"
+                android:textColorHint="#fa97a0"
+                android:maxLines="1"
+                android:id="@+id/editText_password"
+                android:inputType="textPassword"
+                android:drawableRight="@drawable/ic_lock_red_400_24dp"
+                android:background="@drawable/bkgrd_redlogin1"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="16dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Sign in"
+                android:clickable="true"
+                android:textColor="#f16371"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:textAllCaps="false"
+                android:background="@drawable/bkgd_red_2"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>
