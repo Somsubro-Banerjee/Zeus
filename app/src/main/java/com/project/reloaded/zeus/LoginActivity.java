@@ -5,11 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity {
     private Button button;
 
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +29,40 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
+        button = findViewById(R.id.bbtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkEmailVerification();
+            }
+        });
     }
     public void openSignupPage(){
         Intent intent  = new Intent(this, SignupPage.class);
         startActivity(intent);
+    }
+
+    public void openMainPage(){
+        Intent intent = new Intent(this,MainPage.class);
+        startActivity(intent);
+    }
+    public void checkEmailVerification(){
+
+        user = firebaseAuth.getCurrentUser();
+        assert user != null;
+        boolean emailflagger = user.isEmailVerified();
+        if (emailflagger){
+            Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
+            openMainPage();
+
+        }
+        else{
+            Toast.makeText(this, "User not Verified", Toast.LENGTH_SHORT).show();
+            firebaseAuth.signOut();
+        }
+
     }
 
 }

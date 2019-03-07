@@ -30,17 +30,17 @@
                 android:layout_marginBottom="16dp"/>
 
             <EditText
+                android:id="@+id/EEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/editTextEmailAddress"
                 android:background="@android:color/transparent"
-                android:padding="12dp"
+                android:drawableLeft="@drawable/ic_person_white_24dp"
                 android:drawablePadding="12dp"
+                android:ems="10"
                 android:hint="Username"
-                android:textColorHint="#fff"
-                android:drawableLeft="@drawable/ic_person_white_24dp"/>
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textColorHint="#fff" />
 
             <View
                 android:layout_width="match_parent"
@@ -48,19 +48,19 @@
                 android:background="#f9d7db" />
 
             <EditText
+                android:id="@+id/Paasword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/editText_Password"
-                android:drawablePadding="16dp"
-                android:padding="16dp"
-                android:hint="Password"
-                android:textColorHint="#fff"
-                android:background="@android:color/transparent"
-                android:maxLines="1"
                 android:layout_marginTop="4dp"
-                android:drawableLeft="@drawable/ic_lock_white_24dp"/>
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_lock_white_24dp"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="16dp"
+                android:textColorHint="#fff" />
 
             <View
                 android:layout_width="match_parent"
