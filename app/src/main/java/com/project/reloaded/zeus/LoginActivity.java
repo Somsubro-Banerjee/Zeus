@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        button = findViewById(R.id.bbtn);
+        button = findViewById(R.id.btn1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,18 +50,18 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void checkEmailVerification(){
 
-        user = firebaseAuth.getCurrentUser();
-        assert user != null;
-        boolean emailflagger = user.isEmailVerified();
-        if (emailflagger){
-            Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
-            openMainPage();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            boolean emailVerified = user.isEmailVerified();
+            if(emailVerified){
+                openMainPage();
+            }
+            else
+            {
+                Toast.makeText(this, "Please verify your email id ", Toast.LENGTH_SHORT).show();
+            }
+        }
 
-        }
-        else{
-            Toast.makeText(this, "User not Verified", Toast.LENGTH_SHORT).show();
-            firebaseAuth.signOut();
-        }
 
     }
 

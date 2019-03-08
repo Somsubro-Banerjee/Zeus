@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private  EditText editTextEmail;
+    private EditText editTextEmail;
     private EditText editTextPassword;
 
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button = findViewById(R.id.bbtn);
+        button = findViewById(R.id.btn1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         String EEmail = editTextEmail.getText().toString().trim();
         String Paassword = editTextPassword.getText().toString().trim();
         if(TextUtils.isEmpty(EEmail)){
-            Toast.makeText(this, "please entet the email address",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "please enter the email address",Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
             return;
         }
+        checkEmailVerification();
+
 
     }
 
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
     public void openMainPage(){
         Intent intent = new Intent(this,MainPage.class);
         startActivity(intent);
@@ -78,19 +83,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkEmailVerification(){
 
-        user = firebaseAuth.getCurrentUser();
-        assert user != null;
-        boolean emailflagger = user.isEmailVerified();
-        if (emailflagger){
-            Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show();
-            openMainPage();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+            if(emailVerified){
+                openMainPage();
+            }
+            else
+            {
+                Toast.makeText(this, "Please verify your email id ", Toast.LENGTH_SHORT).show();
+            }
+        }
 
-        }
-        else{
-            Toast.makeText(this, "User not Verified", Toast.LENGTH_SHORT).show();
-            firebaseAuth.signOut();
-        }
 
     }
-
 }
+
+

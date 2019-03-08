@@ -76,7 +76,7 @@
                 />
 
             <Button
-                android:id="@+id/bbtn"
+                android:id="@+id/btn1"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
