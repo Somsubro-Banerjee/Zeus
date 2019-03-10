@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
     private EditText editTextEmail;
     private EditText editTextPassword;
 
@@ -63,7 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
             return;
         }
-        checkEmailVerification();
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.signInWithEmailAndPassword(EEmail,Paassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    updateUI(user);
+                }
+            }
+        });
+
 
 
     }
@@ -81,22 +90,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void checkEmailVerification(){
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private void updateUI(FirebaseUser user) {
         if (user != null) {
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-            if(emailVerified){
-                openMainPage();
-            }
-            else
-            {
-                Toast.makeText(this, "Please verify your email id ", Toast.LENGTH_SHORT).show();
-            }
+           user.isEmailVerified();
+           user.getUid();
+           Toast.makeText(this,"Email Verified Successfully",Toast.LENGTH_SHORT).show();
+           openMainPage();
+
+        } else {
+            Toast.makeText(this,"User not Verified email",Toast.LENGTH_SHORT).show();
+            openSignupPage();
         }
-
-
     }
 }
 
