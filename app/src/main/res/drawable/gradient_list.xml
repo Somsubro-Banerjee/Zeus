@@ -13,4 +13,22 @@
 
     <item android:drawable="@drawable/gradient_4"
         android:duration="4000"/>
+
+    <item android:drawable="@drawable/gradient_5"
+        android:duration="4000"/>
+
+    <item android:drawable="@drawable/gradient_6"
+        android:duration="4000"/>
+
+    <item android:drawable="@drawable/gradient_7"
+        android:duration="4000"/>
+
+    <item android:drawable="@drawable/gradient_8"
+        android:duration="4000"/>
+
+    <item android:drawable="@drawable/gradient_9"
+        android:duration="4000"/>
+
+    <item android:drawable="@drawable/gradient_10"
+        android:duration="4000"/>
 </animation-list>

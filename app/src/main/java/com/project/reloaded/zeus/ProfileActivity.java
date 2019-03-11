@@ -13,11 +13,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.text.TextUtils;
+import android.view.View;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.AuthResult;
@@ -33,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     NfcAdapter nfcAdapter;
     private Button button;
+    private EditText editText;
     private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -45,6 +49,10 @@ public class ProfileActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
+
+        editText = (EditText) findViewById(R.id.editText3);
+
+
 
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);// well this still is still not implemented......
@@ -70,8 +78,9 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
     public void pay(){//see  i said still not implemented......this is the only task now  LOL
-
-
+        String amount = editText.getText().toString().trim();
+        Toast.makeText(this,"Amount paid",Toast.LENGTH_SHORT).show();
     }
 }
