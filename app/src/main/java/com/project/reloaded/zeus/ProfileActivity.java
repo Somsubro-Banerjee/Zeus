@@ -63,6 +63,15 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        button=findViewById(R.id.btn2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAboutPage();
+            }
+        });
+
+
         button=findViewById(R.id.button7);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,5 +91,9 @@ public class ProfileActivity extends AppCompatActivity {
     public void pay(){//see  i said still not implemented......this is the only task now  LOL
         String amount = editText.getText().toString().trim();
         Toast.makeText(this,"Amount paid",Toast.LENGTH_SHORT).show();
+    }
+    public void openAboutPage(){
+        Intent intent = new Intent(this,AboutPage.class);
+        startActivity(intent);
     }
 }
