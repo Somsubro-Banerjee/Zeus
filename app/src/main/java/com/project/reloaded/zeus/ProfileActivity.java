@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
-    public void pay(){//see  i said still not implemented
+    public void pay(){//see  i said still not implemented......this is the only task now  LOL
 
     }
 }
