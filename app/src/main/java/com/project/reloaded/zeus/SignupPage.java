@@ -42,6 +42,27 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
 
         buttonRegister.setOnClickListener(this);
     }
+
+
+    private void sendEmailVerification(){
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(SignupPage.this, "Email Sent check mail",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(SignupPage.this,"Email not found",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }
+    }
+
     private void registerUser(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -58,6 +79,10 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
             Toast.makeText(this,"Please enter the password", Toast.LENGTH_LONG).show();
 
             return;
+        }
+        if(password.length()<=6){
+            Toast.makeText(this,"Password Too Short, enter minimum 6 characters",Toast.LENGTH_LONG).show();
+            finish();
         }
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -77,27 +102,10 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
 
         );
 
-    }
-    private void sendEmailVerification(){
-        user = firebaseAuth.getCurrentUser();
-        if (user!=null){
-            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(SignupPage.this,"Check Email",Toast.LENGTH_SHORT).show();
-                        finish();
-                        startActivity(new Intent(SignupPage.this, MainActivity.class));
 
-                    }
-                    else{
-                        Toast.makeText(SignupPage.this, "UNKNoWN ErRoR Occured",Toast.LENGTH_SHORT).show();
 
-                    }
-                }
-            });
-        }
     }
+
 
     @Override
     public void onClick(View view) {

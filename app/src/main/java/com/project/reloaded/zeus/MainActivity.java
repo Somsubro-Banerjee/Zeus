@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
             return;
         }
-        if(Paassword.length()<6){
+        if(Paassword.length()<=6){
             Toast.makeText(this,"Password Too Short, enter minimum 6 characters",Toast.LENGTH_LONG).show();
         }
         firebaseAuth=FirebaseAuth.getInstance();
@@ -71,11 +71,10 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                    updateUI(user);
-                }
+                    updateUI(user);                }
                 else {
-                    Toast.makeText(MainActivity.this,"User not Verified or Email-ID/Password Incorrect",Toast.LENGTH_SHORT).show();
-                    openSignupPage();
+                    Toast.makeText(MainActivity.this,"User not Verified or Email-ID/Password Incorrect",Toast.LENGTH_LONG).show();
+                    firebaseAuth.signOut();
                 }
             }
         });
@@ -102,11 +101,10 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
            user.isEmailVerified();
            user.getUid();
-           Toast.makeText(this,"Email Verified Successfully",Toast.LENGTH_SHORT).show();
-
+           Toast.makeText(this,"Email Verified Successfully",Toast.LENGTH_LONG).show();
            openMainPage();
-
         }
+
     }
 }
 
