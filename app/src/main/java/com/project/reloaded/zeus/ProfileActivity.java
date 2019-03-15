@@ -7,9 +7,11 @@ import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
 import android.nfc.NfcAdapter;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.AuthResult;
@@ -33,67 +36,56 @@ import java.util.Locale;
 
 
 public class ProfileActivity extends AppCompatActivity {
-
-    NfcAdapter nfcAdapter;
+    private ImageButton imageButton;
     private Button button;
     private EditText editText;
     private FirebaseAuth firebaseAuth;
+    private FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );//for running the activities in fullscreen mode
-        button=findViewById(R.id.button6);
-        ConstraintLayout constraintLayout = findViewById(R.id.layout2);//this is just the animation part of the program which changes the colors in background
-        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
 
-        editText = (EditText) findViewById(R.id.editText3);
+        editText = (EditText) findViewById(R.id.editText4);
+        editText =(EditText) findViewById(R.id.name);
+        editText = (EditText) findViewById(R.id.emailll);
+        editText = (EditText) findViewById(R.id.phone);
 
+        imageButton = (ImageButton) findViewById(R.id.more);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMoreOptions();
+            }
+        });
 
-
-
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);// well this still is still not implemented......
-        button.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab1);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pay();
             }
         });
-
-        button=findViewById(R.id.btn2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAboutPage();
-            }
-        });
+        if(editText==null){
+            Toast.makeText(this, "Enter the Details above....", Toast.LENGTH_SHORT).show();
+        }
 
 
-        button=findViewById(R.id.button7);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMainActivity();
-
-            }
-        });
-
-    }
-
-    public void openMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
     }
 
     public void pay(){//see  i said still not implemented......this is the only task now  LOL
         String amount = editText.getText().toString().trim();
-        Toast.makeText(this,"Amount paid",Toast.LENGTH_SHORT).show();
+        openSuccessfulPage();
     }
-    public void openAboutPage(){
-        Intent intent = new Intent(this,AboutPage.class);
+
+    public  void openSuccessfulPage(){
+        Intent intent = new Intent(this,Successful.class);
         startActivity(intent);
     }
+    public void openMoreOptions(){
+        Intent intent = new Intent(this, More.class);
+        startActivity(intent);
+    }
+
 }

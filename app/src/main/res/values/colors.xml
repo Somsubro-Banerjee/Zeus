@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorGray">#eeeeee</color>
+    <color name="colorGray">#EEEEEE</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -66,11 +66,11 @@
     <!-- Google Apps Color -->
     <color name="app_blue">#4285f4</color>
     <color name="app_blue_dark">#3367d6</color>
-    <color name="app_green">#0f9d58</color>
+    <color name="app_green">#0F9D58</color>
     <color name="app_green_dark">#0b8043</color>
     <color name="app_yellow">#f4b400</color>
     <color name="app_yellow_dark">#f09300</color>
-    <color name="app_red">#db4437</color>
+    <color name="app_red">#DB4437</color>
 
 
 </resources>
