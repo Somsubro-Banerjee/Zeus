@@ -23,7 +23,7 @@
                 android:layout_height="120dp"
                 android:textSize="90dp"
                 android:text="Zeus"
-                android:textColorHint="#fff"
+                android:textColorHint="#ffff"
                 android:textAlignment="center"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_marginTop="30dp"

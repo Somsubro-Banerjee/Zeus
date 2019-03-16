@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "704570894857-kviqg9hpi1tuvemol85tg3nrcu52esvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.reloaded.zeus",
+            "certificate_hash": "ec2f325e635538bddc787430f0ce00ed5e43ba44"
+          }
+        },
+        {
           "client_id": "704570894857-jtfib2tgdn3q391cjeuh2fhfabn6g1h0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704570894857-jtfib2tgdn3q391cjeuh2fhfabn6g1h0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

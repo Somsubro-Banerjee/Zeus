@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
 import android.nfc.NfcAdapter;
+import android.provider.ContactsContract;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -29,28 +30,38 @@ import android.widget.Toast;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+import java.util.jar.Attributes;
 
 
 public class ProfileActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private Button button;
-    private EditText editText;
+    private EditText editText1, editText2, editText3, editText4;
     private FirebaseAuth firebaseAuth;
     private FloatingActionButton floatingActionButton;
+
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );//for running the activities in fullscreen mode
 
-        editText = (EditText) findViewById(R.id.editText4);
-        editText =(EditText) findViewById(R.id.name);
-        editText = (EditText) findViewById(R.id.emailll);
-        editText = (EditText) findViewById(R.id.phone);
+        editText1 = (EditText) findViewById(R.id.editText4);
+        editText2 = (EditText) findViewById(R.id.name);
+        editText3 = (EditText) findViewById(R.id.emailll);
+        editText4 = (EditText) findViewById(R.id.phone);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("transaction");
 
         imageButton = (ImageButton) findViewById(R.id.more);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -67,16 +78,40 @@ public class ProfileActivity extends AppCompatActivity {
                 pay();
             }
         });
-        if(editText==null){
-            Toast.makeText(this, "Enter the Details above....", Toast.LENGTH_SHORT).show();
-        }
 
 
     }
 
-    public void pay(){//see  i said still not implemented......this is the only task now  LOL
-        String amount = editText.getText().toString().trim();
+    public void pay(){//see  i said still not implemented......this is the only task now  LOL\
+
+        String amount = editText1.getText().toString().trim();
+        String name = editText2.getText().toString().trim();
+        String email = editText3.getText().toString().trim();
+        String phone = editText4.getText().toString().trim();
+
+
+
+        if(TextUtils.isEmpty(amount)){
+            Toast.makeText(this, "Please enter a amount to send", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(name)){
+            Toast.makeText(this, "Enter the name of the person", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(email)){
+            Toast.makeText(this, "Please enter  the email id of the person", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if ((TextUtils.isEmpty(phone))){
+            Toast.makeText(this, "Please enter the phone number of the person", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         openSuccessfulPage();
+
+        addToDatabase();
+
     }
 
     public  void openSuccessfulPage(){
@@ -87,5 +122,20 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this, More.class);
         startActivity(intent);
     }
+
+    public void addToDatabase(){
+
+        String amount = editText1.getText().toString().trim();
+        String name = editText2.getText().toString().trim();
+        String email = editText3.getText().toString().trim();
+        String phone = editText4.getText().toString().trim();
+
+        String id = databaseReference.push().getKey();
+
+        Database database = new Database(id,name,email,phone,amount);
+        databaseReference.child(name).setValue(database);
+    }
+
+
 
 }
