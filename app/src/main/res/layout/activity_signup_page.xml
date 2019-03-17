@@ -8,32 +8,34 @@
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/capture3"
+    android:background="@drawable/wet_road_edited"
     >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
-            android:padding="16dp"
-            >
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_width="380dp"
                 android:layout_height="120dp"
-                android:textSize="90dp"
-                android:text="Zeus"
                 android:layout_gravity="center_horizontal"
-                android:textAlignment="center"
-                style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/caveat_bold"
+                android:text="Zeus"
+                android:textAlignment="center"
+                android:textSize="100dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/Email2"
@@ -53,7 +55,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="12dp"
-                android:textColorHint="#fff"/>
+                android:textColorHint="#fff" />
 
             <Button
                 android:id="@+id/btn"
@@ -61,14 +63,15 @@
                 android:layout_width="338dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
-                android:background="#f08b98"
+                android:background="@drawable/background_signup21"
                 android:clickable="true"
                 android:ems="10"
+                android:fontFamily="@font/caveat_bold"
                 android:padding="16dp"
                 android:text="Sign up"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textSize="18sp"
+                android:textSize="25dp"
                 android:textStyle="normal" />
 
         </LinearLayout>
