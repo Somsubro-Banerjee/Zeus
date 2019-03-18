@@ -5,6 +5,7 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.provider.ContactsContract;
 import android.support.constraint.ConstraintLayout;
@@ -112,6 +113,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         addToDatabase();
 
+        sendEmail();
+
     }
 
     public  void openSuccessfulPage(){
@@ -134,6 +137,35 @@ public class ProfileActivity extends AppCompatActivity {
 
         Database database = new Database(id,name,email,phone,amount);
         databaseReference.child(name).setValue(database);
+    }
+
+    protected void sendEmail() {
+
+
+        String email = editText3.getText().toString().trim();
+        String amount = editText1.getText().toString().trim();
+
+
+        Log.i("Send email", "");
+
+        String[] TO = {email};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Regarding recent transaction done");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello\t"+email+"\ti have paid you a amount of \t"+amount+"\tto your Zeus Wallet.......Thank You!!!" );
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(ProfileActivity.this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
