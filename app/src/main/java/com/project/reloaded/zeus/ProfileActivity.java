@@ -26,6 +26,7 @@ import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.AuthResult;
@@ -56,7 +57,12 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.profile_page);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );//for running the activities in fullscreen mode
 
-        final String email =getIntent().getStringExtra("email");
+        final String balance = getIntent().getStringExtra("money");
+        TextView textView = (TextView) findViewById(R.id.textView25);
+        textView.setText(balance);
+
+        final String email = getIntent().getStringExtra("email");
+
         editText1 = (EditText) findViewById(R.id.editText4);
         editText2 = (EditText) findViewById(R.id.name);
         editText3 = (EditText) findViewById(R.id.emailll);
@@ -64,6 +70,15 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("transaction");
+
+        imageButton = (ImageButton) findViewById(R.id.add_money);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_money();
+            }
+        });
+
 
         imageButton = (ImageButton) findViewById(R.id.more);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +155,13 @@ public class ProfileActivity extends AppCompatActivity {
         Database database = new Database(id,name,email,phone,amount);
         databaseReference.child(name).setValue(database);
     }
+
+    public void add_money(){
+        Intent intent = new Intent(this,addMoney.class);
+        startActivity(intent);
+    }
+
+
 
     protected void sendEmail() {
 
