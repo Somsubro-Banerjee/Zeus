@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class More extends AppCompatActivity {
     private Button button;
@@ -15,6 +16,9 @@ public class More extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.more);
+        final String email =getIntent().getStringExtra("email");
+        TextView textView = (TextView) findViewById(R.id.textView22) ;
+        textView.setText(email);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//for running the activities in fullscreen mode
         button = (Button) findViewById(R.id.about_button);
         button.setOnClickListener(new View.OnClickListener() {

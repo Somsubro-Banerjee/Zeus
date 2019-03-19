@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SignInUser() {
-        String EEmail = editTextEmail.getText().toString().trim();
+        final String EEmail = editTextEmail.getText().toString().trim();
         String Paassword = editTextPassword.getText().toString().trim();
         if(TextUtils.isEmpty(EEmail)){
             Toast.makeText(this, "please enter the email address",Toast.LENGTH_SHORT).show();
@@ -76,15 +76,13 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                    updateUI(user);                }
+                    updateUI(user, EEmail);                }
                 else {
                     Toast.makeText(MainActivity.this,"User not Verified or Email-ID/Password Incorrect",Toast.LENGTH_LONG).show();
                     firebaseAuth.signOut();
                 }
             }
         });
-
-
 
     }
 
@@ -95,19 +93,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void openMainPage(){
+    public void openMainPage(String EEmail){
         Intent intent = new Intent(this,MainPage.class);
+        intent.putExtra("email",EEmail);
         startActivity(intent);
     }
 
 
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(FirebaseUser user, String EEmail) {
         if (user != null) {
            user.isEmailVerified();
            user.getUid();
            Toast.makeText(this,"Email Verified Successfully",Toast.LENGTH_LONG).show();
-           openMainPage();
+           openMainPage(EEmail);
         }
 
     }

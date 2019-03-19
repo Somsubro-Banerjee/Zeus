@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainPage extends AppCompatActivity {
 
@@ -24,19 +25,24 @@ public class MainPage extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
 
+        final String email =getIntent().getStringExtra("email");
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setText(email);
         button =findViewById(R.id.buttoonn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openProvileAcivity();
+                openProfileAcivity(email);
             }
         });
 
 
+
     }
 
-    public void openProvileAcivity(){
+    public void openProfileAcivity(String email){
         Intent intent = new Intent(this,ProfileActivity.class);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 

@@ -56,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.profile_page);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );//for running the activities in fullscreen mode
 
+        final String email =getIntent().getStringExtra("email");
         editText1 = (EditText) findViewById(R.id.editText4);
         editText2 = (EditText) findViewById(R.id.name);
         editText3 = (EditText) findViewById(R.id.emailll);
@@ -68,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMoreOptions();
+                openMoreOptions(email);
             }
         });
 
@@ -121,8 +122,9 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Successful.class);
         startActivity(intent);
     }
-    public void openMoreOptions(){
+    public void openMoreOptions(String email){
         Intent intent = new Intent(this, More.class);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 
