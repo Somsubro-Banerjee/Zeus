@@ -61,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textView25);
         textView.setText(balance);
 
+
         final String email = getIntent().getStringExtra("email");
 
         editText1 = (EditText) findViewById(R.id.editText4);
