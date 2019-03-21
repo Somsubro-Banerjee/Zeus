@@ -10,15 +10,26 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class More extends AppCompatActivity {
     private Button button;
     private ImageButton imageButton;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.more);
-        final String email =getIntent().getStringExtra("email");
-        TextView textView = (TextView) findViewById(R.id.textView22) ;
-        textView.setText(email);
+        FirebaseUser firebaseUser;
+        FirebaseAuth firebaeAuth;
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null){
+            String email = firebaseUser.getEmail();
+            String UID = firebaseUser.getUid();
+            TextView textView = (TextView) findViewById(R.id.textView22) ;
+            textView.setText(email);
+        }
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//for running the activities in fullscreen mode
         button = (Button) findViewById(R.id.about_button);
         button.setOnClickListener(new View.OnClickListener() {

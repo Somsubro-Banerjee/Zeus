@@ -10,6 +10,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainPage extends AppCompatActivity {
 
     private Button button;
@@ -24,15 +27,19 @@ public class MainPage extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
-
-        final String email =getIntent().getStringExtra("email");
-        TextView textView = (TextView) findViewById(R.id.textView2);
-        textView.setText(email);
+        FirebaseAuth firebaseAuth;
+        FirebaseUser firebaseUser;
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null) {
+            String email = firebaseUser.getEmail();
+            TextView textView = (TextView) findViewById(R.id.textView2);
+            textView.setText(email);
+        }
         button =findViewById(R.id.buttoonn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openProfileAcivity(email);
+                openProfileAcivity();
             }
         });
 
@@ -40,9 +47,8 @@ public class MainPage extends AppCompatActivity {
 
     }
 
-    public void openProfileAcivity(String email){
+    public void openProfileAcivity(){
         Intent intent = new Intent(this,ProfileActivity.class);
-        intent.putExtra("email", email);
         startActivity(intent);
     }
 

@@ -1,18 +1,22 @@
 package com.project.reloaded.zeus;
 
+import android.app.ActivityOptions;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Paint;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -32,9 +36,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.io.ByteArrayOutputStream;
@@ -49,7 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editText1, editText2, editText3, editText4;
     private FirebaseAuth firebaseAuth;
     private FloatingActionButton floatingActionButton;
-
+    private ImageButton imagebutton;
+    private TextView textView;
     DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -57,9 +64,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.profile_page);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );//for running the activities in fullscreen mode
 
-        final String balance = getIntent().getStringExtra("money");
-        TextView textView = (TextView) findViewById(R.id.textView25);
-        textView.setText(balance);
 
 
         final String email = getIntent().getStringExtra("email");
@@ -76,7 +80,8 @@ public class ProfileActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_money();
+                Intent intent = new Intent(ProfileActivity.this,addMoney.class);
+                startActivity(intent);
             }
         });
 
@@ -132,7 +137,22 @@ public class ProfileActivity extends AppCompatActivity {
 
         sendEmail();
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    String Amount = dataSnapshot1.getKey();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
+
 
     public  void openSuccessfulPage(){
         Intent intent = new Intent(this,Successful.class);
@@ -157,10 +177,6 @@ public class ProfileActivity extends AppCompatActivity {
         databaseReference.child(name).setValue(database);
     }
 
-    public void add_money(){
-        Intent intent = new Intent(this,addMoney.class);
-        startActivity(intent);
-    }
 
 
 
