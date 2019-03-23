@@ -40,13 +40,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.jar.Attributes;
+
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -57,14 +60,16 @@ public class ProfileActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private ImageButton imagebutton;
     private TextView textView;
+    private FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    String Amount;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );//for running the activities in fullscreen mode
-
-
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        String Uid= FirebaseAuth.getInstance().getUid();
 
         final String email = getIntent().getStringExtra("email");
 
@@ -105,7 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void pay(){//see  i said still not implemented......this is the only task now  LOL\
+    public void pay() {
 
         String amount = editText1.getText().toString().trim();
         String name = editText2.getText().toString().trim();
@@ -113,20 +118,19 @@ public class ProfileActivity extends AppCompatActivity {
         String phone = editText4.getText().toString().trim();
 
 
-
-        if(TextUtils.isEmpty(amount)){
+        if (TextUtils.isEmpty(amount)) {
             Toast.makeText(this, "Please enter a amount to send", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Enter the name of the person", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please enter  the email id of the person", Toast.LENGTH_SHORT).show();
             return;
         }
-        if ((TextUtils.isEmpty(phone))){
+        if ((TextUtils.isEmpty(phone))) {
             Toast.makeText(this, "Please enter the phone number of the person", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -136,20 +140,8 @@ public class ProfileActivity extends AppCompatActivity {
         addToDatabase();
 
         sendEmail();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    String Amount = dataSnapshot1.getKey();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
 
@@ -176,10 +168,6 @@ public class ProfileActivity extends AppCompatActivity {
         Database database = new Database(id,name,email,phone,amount);
         databaseReference.child(name).setValue(database);
     }
-
-
-
-
     protected void sendEmail() {
 
 
