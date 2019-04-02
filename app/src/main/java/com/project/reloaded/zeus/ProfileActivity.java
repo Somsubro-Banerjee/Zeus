@@ -33,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -192,8 +193,7 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
             Log.i("Finished sending email...", "");
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(ProfileActivity.this,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
 

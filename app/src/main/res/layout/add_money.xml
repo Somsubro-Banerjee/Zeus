@@ -88,12 +88,20 @@
         android:id="@+id/back_but"
         android:layout_width="91dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/transparent"
         android:text="Go Back"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="621dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.905" />
 
 </android.support.constraint.ConstraintLayout>
