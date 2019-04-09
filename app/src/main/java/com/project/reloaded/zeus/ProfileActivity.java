@@ -90,6 +90,14 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        imageButton = (ImageButton) findViewById(R.id.send_money);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (ProfileActivity.this,SendMoney.class);
+                startActivity(intent);
+            }
+        });
 
 
         imageButton = (ImageButton) findViewById(R.id.more);
